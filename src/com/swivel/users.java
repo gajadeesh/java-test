@@ -87,27 +87,27 @@ public class users {
             }else{
                     System.out.println("Search in Field " + ufields);
                     Tfield = fieldName.nextLine();
-                    users.forEach(emp ->{
-                                if (emp instanceof JSONObject) {
+                    users.forEach(emp -> {
+                        if (emp instanceof JSONObject) {
 
-                                    JSONObject up = (JSONObject) emp;
+                            JSONObject up = (JSONObject) emp;
 
-                                    if (Tfield.equals("empty")) {
-                                        if (up.get(ufields) == null) {
-                                            printall((JSONObject) up, (CommandLineTable) st);
-                                            tickets.forEach(ep -> ticketPickup((JSONObject) ep, up.get("_id"), (CommandLineTable) lt, (CommandLineTable) at));
-                                            st.print();
-                                        }
-
-                                    }else if(up.get(ufields).toString().equals(Tfield)){
-                                        printall((JSONObject) up, (CommandLineTable) st);
-                                        st.print();
-                                        tickets.forEach(ep -> ticketPickup((JSONObject) ep, up.get("_id"), (CommandLineTable) lt, (CommandLineTable) at));
-                                        lt.print();
-                                        at.print();
-
-                                    }
+                            if (Tfield.equals("empty")) {
+                                if (up.get(ufields) == null) {
+                                    printall((JSONObject) up, (CommandLineTable) st);
+                                    tickets.forEach(ep -> ticketPickup((JSONObject) ep, up.get("_id"), (CommandLineTable) lt, (CommandLineTable) at));
+                                    st.print();
                                 }
+
+                            } else if (up.get(ufields).toString().equals(Tfield)) {
+                                printall((JSONObject) up, (CommandLineTable) st);
+                                st.print();
+                                tickets.forEach(ep -> ticketPickup((JSONObject) ep, up.get("_id"), (CommandLineTable) lt, (CommandLineTable) at));
+                                lt.print();
+                                at.print();
+
+                            }
+                        }
                     });
             }
 
@@ -120,31 +120,31 @@ public class users {
         }
     }
     private void printall(JSONObject users, CommandLineTable st){
-            try {
+            try
+            {
                 st.addRow(
-                        users.get("_id").toString(),
-                        users.get("name").toString(),
-                        users.get("url").toString(),
-                        users.get("external_id").toString(),
-                        users.get("alias") == null ? ("") : (users.get("alias").toString()),
-                        users.get("created_at").toString(),
-                        users.get("active").toString(),
-                        users.get("verified") == null ? ("") : (users.get("verified").toString()),
-                        users.get("shared").toString(),
-                        users.get("locale") == null ? ("") : (users.get("locale").toString()),
-                        users.get("timezone") == null ? ("") : (users.get("timezone").toString()),
-                        users.get("last_login_at") == null ? ("") : (users.get("last_login_at").toString()),
-                        users.get("email") == null ? ("") : (users.get("email").toString()),
-                        users.get("phone").toString(),
-                        users.get("signature").toString(),
-                        users.get("tags").toString(),
-                        users.get("suspended").toString(),
-                        users.get("role").toString()
-                );
-
-
+                            users.get("_id").toString(),
+                            users.get("name").toString(),
+                            users.get("url").toString(),
+                            users.get("external_id").toString(),
+                            users.get("alias") == null ? ("") : (users.get("alias").toString()),
+                            users.get("created_at").toString(),
+                            users.get("active").toString(),
+                            users.get("verified") == null ? ("") : (users.get("verified").toString()),
+                            users.get("shared").toString(),
+                            users.get("locale") == null ? ("") : (users.get("locale").toString()),
+                            users.get("timezone") == null ? ("") : (users.get("timezone").toString()),
+                            users.get("last_login_at") == null ? ("") : (users.get("last_login_at").toString()),
+                            users.get("email") == null ? ("") : (users.get("email").toString()),
+                            users.get("phone").toString(),
+                            users.get("signature").toString(),
+                            users.get("tags").toString(),
+                            users.get("suspended").toString(),
+                            users.get("role").toString()
+                    );
             }catch(Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
+                System.out.println(e);
             }
         }
         public void ticketPickup(JSONObject tickets, Object id, CommandLineTable lt, CommandLineTable at) {
@@ -178,6 +178,7 @@ public class users {
                     abuilder.toString(),
                     String.valueOf(tickets.get("subject"))
             );
+
         }
     }
 }
